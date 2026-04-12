@@ -55,7 +55,7 @@ canvas {
     /* AJUSTE CLAVE MÓVIL: Font fluido */
     font-size: clamp(2.5rem, 8vw, 6rem); /* Grande en PC, chico en móvil */
     margin: 0 0 10px 0;
-    color: #00ff00;
+    color: #ffffff;
     text-shadow: 0 0 10px black, 0 0 20px black;
     width: 100%; /* Ocupa todo el ancho */
     max-width: 900px;
@@ -67,7 +67,7 @@ canvas {
     font-size: clamp(1rem, 2vw, 2rem); /* Subtítulo fluido */
     margin: 0;
     text-shadow: 0 0 10px black;
-    color: #00ff88;
+    color: #ffffff;
     max-width: 90%;
 }
 
@@ -121,7 +121,7 @@ canvas {
     max-width: 300px; /* Ancho máximo en móvil (muy importante) */
     height: auto; /* Mantener proporción */
     border-radius: 15px;
-    filter: grayscale(100%) sepia(100%) hue-rotate(90deg) saturate(300%); /* Efecto Matrix opcional en la foto */
+   
 }
 
 /* CAJA DE TEXTO (Ajuste de alineación) */
@@ -147,8 +147,8 @@ canvas {
     }
 
     .img-box img {
-        max-width: 100%; /* Que la imagen use todo el ancho de la card si es necesario */
-        max-width: 250px; /* Pero que no supere este tamaño */
+        filter: none !important; /* Asegura que la foto se vea original */
+        max-width: 250px;
     }
 
     .texto-box p {
