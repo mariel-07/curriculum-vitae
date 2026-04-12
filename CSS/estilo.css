@@ -9,7 +9,7 @@
 
 body {
     overflow-x: hidden;
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family eliminada */
     background-color: black;
     color: #ffffff;
     line-height: 1.6;
