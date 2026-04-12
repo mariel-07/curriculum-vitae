@@ -3,26 +3,26 @@
    ============================== */
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0;
     overflow-x: hidden;
-    font-family: monospace;
+    font-family: 'Courier New', Courier, monospace;
     background-color: black;
-    color: #ffffff; 
-    font-size: 16px;
+    color: #ffffff;
     line-height: 1.6;
 }
 
 /* ==============================
-   2. EFECTO MATRIX Y OVERLAY
+   2. EL FONDO (MATRIX)
    ============================== */
 canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: 0; /* Al fondo de todo */
 }
 
 .overlay {
@@ -31,16 +31,23 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 1;
+    background: rgba(0, 0, 0, 0.75); /* Oscurece el fondo para leer mejor */
+    z-index: 1; /* Sobre el canvas, bajo el texto */
 }
 
 /* ==============================
-   3. SECCIÓN HERO (Título)
+   3. SECCIONES (Ajuste de Capas)
+   ============================== */
+.contenido, .sobre-mi, .tecnologias {
+    position: relative; /* Importante para que el z-index funcione */
+    z-index: 2;        /* Por encima del fondo Matrix */
+    width: 100%;
+}
+
+/* ==============================
+   4. PORTADA (HERO)
    ============================== */
 .contenido {
-    position: relative;
-    z-index: 2;
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -52,24 +59,27 @@ canvas {
 
 .contenido h1 {
     font-size: clamp(2.5rem, 8vw, 6rem);
-    margin: 0 0 10px 0;
     color: #00ff00;
-    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+    margin-bottom: 10px;
+}
+
+.contenido p {
+    font-size: clamp(1rem, 3vw, 2.5rem);
+    color: #bfffe0;
 }
 
 /* ==============================
-   4. SECCIÓN SOBRE MÍ
+   5. SECCIÓN SOBRE MÍ
    ============================== */
 .sobre-mi {
-    position: relative;
-    z-index: 2;
     padding: 80px 20px;
     text-align: center;
 }
 
 .sobre-mi h2, .tecnologias h2 {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    color: #bfffe0;
+    font-size: 2.5rem;
+    color: #00ff88;
 }
 
 .linea {
@@ -85,59 +95,56 @@ canvas {
     align-items: center;
     justify-content: center;
     gap: 40px;
-    max-width: 1000px;
-    margin: auto;
+    max-width: 1100px;
+    margin: 0 auto;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
-    border: 1px solid rgba(0, 255, 100, 0.2);
+    border: 1px solid rgba(0, 255, 136, 0.3);
 }
 
 .img-box img {
     width: 100%;
-    max-width: 300px;
-    height: auto;
+    max-width: 350px; /* Tamaño ideal PC */
     border-radius: 15px;
 }
 
 .texto-box p {
     text-align: left;
     color: #ffffff;
+    font-size: 1.1rem;
 }
 
 /* ==============================
-   5. SECCIÓN TECNOLOGÍAS (Botones)
+   6. BOTONES TECNOLOGÍAS
    ============================== */
 .tecnologias {
-    position: relative;
-    z-index: 2; /* Importante para que se vea sobre el canvas */
     padding: 60px 20px;
-    text-align: center;
 }
 
 .tech-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Permite que bajen de fila */
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .tech-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 15px;
+    padding: 25px;
     width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    gap: 15px;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
-/* EFECTO HOVER */
 .tech-card:hover {
     background: rgba(0, 255, 136, 0.15);
     transform: translateY(-10px);
@@ -146,13 +153,18 @@ canvas {
 }
 
 .tech-card i {
-    font-size: 40px;
+    font-size: 45px;
     color: #00ff88;
-    margin-bottom: 10px;
+}
+
+.tech-card span {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
 
 /* ==============================
-   6. MEDIA QUERY MÓVIL
+   7. RESPONSIVE (CELULAR)
    ============================== */
 @media (max-width: 768px) {
     .card {
@@ -160,13 +172,17 @@ canvas {
         padding: 20px;
     }
 
-    .tech-card {
-        /* Ajuste para 2 botones por fila */
-        width: calc(50% - 15px);
-        min-width: 120px;
+    .img-box img {
+        max-width: 100%; /* La imagen crece en el cel */
     }
 
     .texto-box p {
         text-align: center;
     }
-} /* <--- AQUÍ ESTABA EL ERROR: Asegúrate de que esta llave cierre bien */
+
+    .tech-card {
+        /* 2 botones por fila en el celular */
+        width: calc(50% - 15px);
+        min-width: 130px;
+    }
+}
