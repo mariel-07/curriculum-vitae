@@ -2,21 +2,21 @@
    1. RESET Y BASE
    ============================== */
 * {
-    box-sizing: border-box; /* Crucial para márgenes correctos */
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    overflow-x: hidden; /* Evita que la pantalla se mueva a los lados */
+    overflow-x: hidden;
     font-family: monospace;
     background-color: black;
-    color: #ccc; /* Un gris claro para el texto largo */
-    font-size: 16px; /* Base amigable para móvil */
+    color: #ffffff; 
+    font-size: 16px;
     line-height: 1.6;
 }
 
 /* ==============================
-   2. EFECTO MATRIX
+   2. EFECTO MATRIX Y OVERLAY
    ============================== */
 canvas {
     position: fixed;
@@ -31,12 +31,12 @@ canvas {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.75); /* Un poco más oscuro */
+    background: rgba(0, 0, 0, 0.75);
     z-index: 1;
 }
 
 /* ==============================
-   3. SECCIÓN HERO (El Título)
+   3. SECCIÓN HERO (Título)
    ============================== */
 .contenido {
     position: relative;
@@ -46,29 +46,15 @@ canvas {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Centrado horizontal */
+    align-items: center;
     padding: 20px;
 }
 
-/* Título Principal */
 .contenido h1 {
-    /* AJUSTE CLAVE MÓVIL: Font fluido */
-    font-size: clamp(2.5rem, 8vw, 6rem); /* Grande en PC, chico en móvil */
+    font-size: clamp(2.5rem, 8vw, 6rem);
     margin: 0 0 10px 0;
-    color: #ffffff;
-    text-shadow: 0 0 10px black, 0 0 20px black;
-    width: 100%; /* Ocupa todo el ancho */
-    max-width: 900px;
-    line-height: 1.1;
-}
-
-/* Subtítulo */
-.contenido p {
-    font-size: clamp(1rem, 2vw, 2rem); /* Subtítulo fluido */
-    margin: 0;
-    text-shadow: 0 0 10px black;
-    color: #ffffff;
-    max-width: 90%;
+    color: #00ff00;
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
 /* ==============================
@@ -77,14 +63,13 @@ canvas {
 .sobre-mi {
     position: relative;
     z-index: 2;
-    padding: 80px 20px; /* Un poco menos de aire en móvil */
+    padding: 80px 20px;
     text-align: center;
 }
 
-.sobre-mi h2 {
+.sobre-mi h2, .tecnologias h2 {
     font-size: clamp(1.8rem, 4vw, 3rem);
     color: #bfffe0;
-    margin: 0;
 }
 
 .linea {
@@ -95,56 +80,52 @@ canvas {
     border-radius: 5px;
 }
 
-/* CARD (Ajustes clave de responsividad) */
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 40px;
-    max-width: 1000px; /* Ancho máximo en PC */
-    width: 100%; /* Ancho total en móvil */
+    max-width: 1000px;
     margin: auto;
-    padding: clamp(20px, 5vw, 60px); /* Padding fluido */
+    padding: 40px;
     background: rgba(0, 0, 0, 0.6);
     border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 255, 100, 0.15);
-    border: 1px solid rgba(0, 255, 100, 0.1);
-}
-
-/* IMAGEN (Hecha flexible) */
-.img-box {
-    flex-shrink: 0; /* No dejes que el flex-box la achique */
+    border: 1px solid rgba(0, 255, 100, 0.2);
 }
 
 .img-box img {
-    width: 100%; /* Ancho total de su contenedor */
-    max-width: 300px; /* Ancho máximo en móvil (muy importante) */
-    height: auto; /* Mantener proporción */
+    width: 100%;
+    max-width: 300px;
+    height: auto;
     border-radius: 15px;
-   
 }
 
-/* CAJA DE TEXTO (Ajuste de alineación) */
 .texto-box p {
-    text-align: left; /* Alineado a la izquierda para leer mejor */
-    color: #ccc;
-    line-height: 1.7;
-    font-size: 1.1rem;
-    margin: 0;
+    text-align: left;
+    color: #ffffff;
 }
-/* --- SECCIÓN TECNOLOGÍAS (Desktop y Base) --- */
+
+/* ==============================
+   5. SECCIÓN TECNOLOGÍAS (Botones)
+   ============================== */
+.tecnologias {
+    position: relative;
+    z-index: 2; /* Importante para que se vea sobre el canvas */
+    padding: 60px 20px;
+    text-align: center;
+}
+
 .tech-container {
     display: flex;
-    flex-wrap: wrap;       /* Permite que los botones bajen si no caben */
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;             /* Espacio entre botones */
-    width: 100%;
+    gap: 20px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .tech-card {
-    width: 150px;          /* Ancho fijo en PC */
+    width: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,50 +133,40 @@ canvas {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     border: 1px solid rgba(0, 255, 136, 0.2);
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
+/* EFECTO HOVER */
+.tech-card:hover {
+    background: rgba(0, 255, 136, 0.15);
+    transform: translateY(-10px);
+    border-color: #00ff88;
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+}
+
+.tech-card i {
+    font-size: 40px;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
 
 /* ==============================
-   5. MEDIA QUERY MÓVIL (768px o menos)
+   6. MEDIA QUERY MÓVIL
    ============================== */
 @media (max-width: 768px) {
-    /* Ajustes específicos para celular */
-.tech-container {
-        gap: 10px;         /* Espacio más pequeño en móvil */
+    .card {
+        flex-direction: column;
+        padding: 20px;
     }
 
     .tech-card {
-        /* Explicación: calc(50% - 10px) hace que entren exactamente 2 botones 
-           por fila, restando el espacio del gap para que no se desborde.
-        */
-        width: calc(50% - 10px); 
-        min-width: 120px;  /* Evita que se deformen en pantallas muy pequeñas */
-        padding: 15px;
-    }
-
-    .tech-card i {
-        font-size: 30px;   /* Iconos un poco más pequeños para móvil */
-    }
-
-    .tech-card span {
-        font-size: 12px;   /* Texto ajustado */
-    }
-    .card {
-        flex-direction: column; /* Apilado vertical */
-        gap: 20px;
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    .img-box img {
-        filter: none !important; /* Asegura que la foto se vea original */
-        max-width: 250px;
+        /* Ajuste para 2 botones por fila */
+        width: calc(50% - 15px);
+        min-width: 120px;
     }
 
     .texto-box p {
-        text-align: center; /* En móvil, mejor centrar para que se vea como en tu ejemplo */
-        font-size: 1rem;
-        width: 100%;
+        text-align: center;
     }
-}
+} /* <--- AQUÍ ESTABA EL ERROR: Asegúrate de que esta llave cierre bien */
