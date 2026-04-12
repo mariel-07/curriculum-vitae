@@ -1,8 +1,5 @@
-/* 1. IMPORTACIÓN DE FUENTE TECNOLÓGICA */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap');
-
 /* ==============================
-   1. RESET Y BASE
+   1. RESET Y ESTILO BASE
    ============================== */
 * {
     box-sizing: border-box;
@@ -12,14 +9,15 @@
 
 body {
     overflow-x: hidden;
-     
+    /* Fuente normal, elegante y clásica (Serif) */
+    font-family: 'Times New Roman', Times, serif; 
     background-color: black;
     color: #ffffff;
     line-height: 1.6;
 }
 
 /* ==============================
-   2. EL FONDO (MATRIX)
+   2. FONDO MATRIX
    ============================== */
 canvas {
     position: fixed;
@@ -39,19 +37,19 @@ canvas {
 }
 
 /* ==============================
-   3. SECCIONES
+   3. CONTENIDOS (CENTRADOS)
    ============================== */
 .contenido, .sobre-mi, .tecnologias {
     position: relative;
     z-index: 2;
     width: 100%;
+    text-align: center; /* Todo el texto centrado */
 }
 
 /* ==============================
-   4. PORTADA (HERO)
+   4. PORTADA (NOMBRE Y CARRERA)
    ============================== */
 .contenido {
-    text-align: center;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -61,18 +59,17 @@ canvas {
 }
 
 .contenido h1 {
-    
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
     color: #00ff00;
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
-    margin-bottom: 10px;
-    letter-spacing: 5px;
+    /* Brillo igual a tu imagen */
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 40px rgba(0, 255, 0, 0.4);
+    margin-bottom: 20px;
 }
 
 .contenido p {
-    font-size: clamp(1rem, 3vw, 2.5rem);
-    color: #bfffe0;
-    font-weight: bold;
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    color: #ffffff;
+    font-style: italic; /* Estilo para "Ingeniera de Software e IA" */
 }
 
 /* ==============================
@@ -80,114 +77,108 @@ canvas {
    ============================== */
 .sobre-mi {
     padding: 80px 20px;
-    text-align: center;
 }
 
 .sobre-mi h2, .tecnologias h2 {
-   
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #00ff88;
     text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .linea {
-    width: 80px;
-    height: 4px;
+    width: 100px;
+    height: 5px;
     background: #00ff88;
     margin: 15px auto 40px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .card {
     display: flex;
+    flex-direction: column; /* Cambiado a columna para centrar imagen y texto */
     align-items: center;
     justify-content: center;
-    gap: 40px;
-    max-width: 1100px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.9); /* Más oscuro para resaltar texto */
-    border-radius: 20px;
-    border: 2px solid rgba(0, 255, 136, 0.5);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 25px;
+    border: 2px solid #00ff88;
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
 }
 
 .img-box img {
-    width: 100%;
-    max-width: 350px;
-    border-radius: 15px;
-    filter: grayscale(30%) contrast(110%); /* Efecto más serio */
+    width: 80px; /* Tamaño pequeño como en tu captura */
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #00ff88;
 }
 
 .texto-box p {
-    text-align: left;
+    text-align: center; /* Texto de descripción centrado */
     color: #ffffff;
-    font-size: 1.1rem;
-    letter-spacing: 0.5px;
+    font-size: 1.2rem;
+    max-width: 800px;
 }
 
 /* ==============================
-   6. BOTONES TECNOLOGÍAS
+   6. SECCIÓN TECNOLOGÍAS
    ============================== */
 .tecnologias {
     padding: 60px 20px;
+    margin-bottom: 100px;
 }
 
 .tech-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .tech-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 255, 136, 0.4);
     border-radius: 15px;
     padding: 25px;
-    width: 150px;
+    width: 160px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 }
 
 .tech-card:hover {
-    background: rgba(0, 255, 136, 0.2);
-    transform: translateY(-10px);
+    transform: scale(1.05);
     border-color: #00ff88;
-    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.4);
+    background: rgba(0, 255, 136, 0.1);
 }
 
 .tech-card i {
-    font-size: 45px;
+    font-size: 50px;
     color: #00ff88;
 }
 
 .tech-card span {
-    color: white;
-    font-size: 0.9rem;
+    color: #ffffff;
+    font-size: 1.1rem;
     font-weight: bold;
-    font-family: 'JetBrains Mono', monospace;
+    /* Aplicando fuente normal a los nombres de tech */
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* ==============================
-   7. RESPONSIVE (CELULAR)
+   7. RESPONSIVE
    ============================== */
 @media (max-width: 768px) {
     .card {
-        flex-direction: column;
         padding: 20px;
-    }
-
-    .img-box img {
-        max-width: 100%;
-    }
-
-    .texto-box p {
-        text-align: center;
+        width: 95%;
     }
 }
