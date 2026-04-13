@@ -9,10 +9,10 @@
 
 body {
     overflow-x: hidden;
-   
     background-color: black;
     color: #ffffff;
     line-height: 1.6;
+    font-family: Arial, sans-serif; /* 🔥 CAMBIADO */
 }
 
 /* ==============================
@@ -36,17 +36,17 @@ canvas {
 }
 
 /* ==============================
-   3. CONTENIDOS (CENTRADOS)
+   3. CONTENIDOS
    ============================== */
 .contenido, .sobre-mi, .tecnologias {
     position: relative;
     z-index: 2;
     width: 100%;
-    text-align: center; /* Todo el texto centrado */
+    text-align: center;
 }
 
 /* ==============================
-   4. PORTADA (NOMBRE Y CARRERA)
+   4. PORTADA
    ============================== */
 .contenido {
     min-height: 100vh;
@@ -60,7 +60,6 @@ canvas {
 .contenido h1 {
     font-size: clamp(2.5rem, 8vw, 5.5rem);
     color: #00ff00;
-    /* Brillo igual a tu imagen */
     text-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 40px rgba(0, 255, 0, 0.4);
     margin-bottom: 20px;
 }
@@ -68,14 +67,14 @@ canvas {
 .contenido p {
     font-size: clamp(1.2rem, 3vw, 2.2rem);
     color: #ffffff;
-    font-style: italic; /* Estilo para "Ingeniera de Software e IA" */
+    font-style: italic;
 }
 
 /* ==============================
-   5. SECCIÓN SOBRE MÍ
+   5. SOBRE MI
    ============================== */
 .sobre-mi {
-    padding: 80px 20px;
+    padding: 100px 20px;
 }
 
 .sobre-mi h2, .tecnologias h2 {
@@ -93,38 +92,44 @@ canvas {
     border-radius: 10px;
 }
 
+/* 🔥 CARD MEJORADA */
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    max-width: 900px;
+
+    max-width: 1100px; /* 🔥 MÁS GRANDE */
     margin: 0 auto;
-    padding: 40px;
+    padding: 60px; /* 🔥 MÁS ESPACIO */
+
     background: rgba(0, 0, 0, 0.85);
     border-radius: 25px;
     border: 2px solid #00ff88;
     box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
 }
 
+/* 🔥 IMAGEN ARREGLADA */
 .img-box img {
-    width: 80px; /* Tamaño pequeño como en tu captura */
-    height: 80px;
+    width: 120px;  /* 🔥 más grande */
+    height: 120px;
     border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
+    object-fit: cover; /* 🔥 CLAVE: evita deformación */
+    margin-bottom: 25px;
     border: 2px solid #00ff88;
 }
 
+/* 🔥 TEXTO MEJORADO */
 .texto-box p {
-    text-align: center; /* Texto de descripción centrado */
+    text-align: center;
     color: #ffffff;
-    font-size: 1.2rem;
-    max-width: 800px;
+    font-size: 1.3rem; /* 🔥 más grande */
+    max-width: 900px;
+    line-height: 1.8;
 }
 
 /* ==============================
-   6. SECCIÓN TECNOLOGÍAS
+   6. TECNOLOGIAS
    ============================== */
 .tecnologias {
     padding: 60px 20px;
@@ -168,7 +173,6 @@ canvas {
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: bold;
- 
 }
 
 /* ==============================
@@ -176,7 +180,16 @@ canvas {
    ============================== */
 @media (max-width: 768px) {
     .card {
-        padding: 20px;
+        padding: 30px;
         width: 95%;
+    }
+
+    .img-box img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .texto-box p {
+        font-size: 1rem;
     }
 }
