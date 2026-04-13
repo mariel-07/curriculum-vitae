@@ -113,11 +113,13 @@ canvas {
 .img-box img {
     width: 120px;  /* 🔥 más grande */
     height: 120px;
-    border-radius: 50%;
+   width: 250px;
+    border-radius: 10px;
     object-fit: cover; /* 🔥 CLAVE: evita deformación */
     margin-bottom: 25px;
     border: 2px solid #00ff88;
 }
+
 
 /* 🔥 TEXTO MEJORADO */
 .texto-box p {
