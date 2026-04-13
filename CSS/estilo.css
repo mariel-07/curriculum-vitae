@@ -1,10 +1,15 @@
-/* RESET */
+/* ==============================
+   1. RESET
+============================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ==============================
+   2. BODY
+============================== */
 body {
     background: black;
     color: white;
@@ -12,51 +17,73 @@ body {
     overflow-x: hidden;
 }
 
-/* MATRIX */
+/* ==============================
+   3. FONDO MATRIX (CAPAS)
+============================== */
 canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 0;
+    z-index: 0; /* 🔥 fondo */
 }
 
-/* OVERLAY */
 .overlay {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.75);
-    z-index: 1;
+
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1; /* 🔥 encima del fondo */
 }
 
-/* HERO */
-.hero {
+/* TODO EL CONTENIDO ARRIBA */
+.contenido,
+.sobre-mi,
+.tecnologias {
     position: relative;
     z-index: 2;
+    width: 100%;
     text-align: center;
-    min-height: 100vh;
+}
 
+/* ==============================
+   4. PORTADA (HERO)
+============================== */
+.contenido {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.hero h1 {
+.contenido h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
     color: #00ff88;
     text-shadow: 0 0 10px black;
+    margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 1.5rem;
+.contenido p {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    text-shadow: 0 0 8px black;
 }
 
-/* SECCIONES */
+/* ==============================
+   5. SECCIONES
+============================== */
 section {
-    position: relative;
-    z-index: 2;
     padding: 80px 20px;
-    text-align: center;
+}
+
+/* TITULOS */
+.sobre-mi h2,
+.tecnologias h2 {
+    font-size: 3rem;
+    color: #00ff88;
+    text-transform: uppercase;
 }
 
 /* LINEA */
@@ -64,10 +91,12 @@ section {
     width: 80px;
     height: 4px;
     background: #00ff88;
-    margin: 10px auto 40px;
+    margin: 15px auto 40px;
 }
 
-/* CARD */
+/* ==============================
+   6. CARD (IMAGEN + TEXTO)
+============================== */
 .card {
     display: flex;
     align-items: center;
@@ -76,11 +105,13 @@ section {
 
     max-width: 1100px;
     margin: auto;
-    padding: 60px;
+    padding: 50px;
 
     background: rgba(0,0,0,0.85);
     border-radius: 20px;
     border: 2px solid #00ff88;
+
+    box-shadow: 0 0 25px rgba(0,255,136,0.2);
 }
 
 /* IMAGEN */
@@ -92,7 +123,9 @@ section {
     border-radius: 15px;
     border: 2px solid #00ff88;
 
-    box-shadow: 0 0 20px rgba(0,255,136,0.4);
+    box-shadow: 
+        0 0 20px rgba(0,255,136,0.5),
+        0 0 40px rgba(0,255,136,0.2);
 }
 
 /* TEXTO */
@@ -101,7 +134,14 @@ section {
     text-align: left;
 }
 
-/* TECNOLOGIAS */
+.texto-box p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+}
+
+/* ==============================
+   7. TECNOLOGIAS
+============================== */
 .tech-container {
     display: flex;
     flex-wrap: wrap;
@@ -129,11 +169,18 @@ section {
     color: #00ff88;
 }
 
-/* RESPONSIVE */
+.tech-card span {
+    display: block;
+    margin-top: 10px;
+}
+
+/* ==============================
+   8. RESPONSIVE (CELULAR)
+============================== */
 @media (max-width: 768px) {
 
     .card {
-        flex-direction: column;
+        flex-direction: column; /* 🔥 imagen arriba */
         text-align: center;
         padding: 30px;
     }
@@ -145,5 +192,10 @@ section {
 
     .texto-box {
         text-align: center;
+    }
+
+    .sobre-mi h2,
+    .tecnologias h2 {
+        font-size: 2rem;
     }
 }
