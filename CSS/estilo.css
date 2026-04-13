@@ -58,16 +58,16 @@ canvas {
 }
 
 .contenido h1 {
-    font-size: clamp(2.5rem, 8vw, 5.5rem);
+   
     color: #00ff00;
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.9), 0 0 40px rgba(0, 255, 0, 0.4);
+    
     margin-bottom: 20px;
 }
 
 .contenido p {
     font-size: clamp(1.2rem, 3vw, 2.2rem);
     color: #ffffff;
-    font-style: italic;
+    font-family: Arial, sans-serif;
 }
 
 /* ==============================
