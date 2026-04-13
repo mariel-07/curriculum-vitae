@@ -59,7 +59,7 @@ canvas {
 
 .contenido h1 {
    
-    color: #00ff00;
+    color: #ffffff;
     
     margin-bottom: 20px;
 }
@@ -111,13 +111,17 @@ canvas {
 
 /* 🔥 IMAGEN ARREGLADA */
 .img-box img {
-    width: 120px;  /* 🔥 más grande */
-    height: 120px;
-   width: 250px;
-    border-radius: 10px;
-    object-fit: cover; /* 🔥 CLAVE: evita deformación */
-    margin-bottom: 25px;
+    width: 260px;
+    height: 320px;
+
+    object-fit: cover;
+    border-radius: 15px;
+
     border: 2px solid #00ff88;
+
+    box-shadow: 
+        0 0 20px rgba(0,255,136,0.5),
+        0 0 40px rgba(0,255,136,0.2);
 }
 
 
