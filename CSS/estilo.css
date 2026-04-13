@@ -1,201 +1,199 @@
-/* ==============================
-   1. RESET
-============================== */
+/* =========================================
+   1. CONFIGURACIÓN BASE (RESET)
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Forzamos una fuente genérica del sistema */
+    font-family: sans-serif;
 }
 
-/* ==============================
-   2. BODY
-============================== */
 body {
-    background: black;
-    color: white;
-    font-family: Arial, sans-serif;
     overflow-x: hidden;
+    background-color: black;
+    color: white;
 }
 
-/* ==============================
-   3. FONDO MATRIX (CAPAS)
-============================== */
+/* 🎬 FONDO MATRIX (Fijo) */
 canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 0; /* 🔥 fondo */
+    z-index: 0;
 }
 
+/* 🔥 CAPA OSCURA */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     background: rgba(0, 0, 0, 0.75);
-    z-index: 1; /* 🔥 encima del fondo */
+    z-index: 1;
 }
 
-/* TODO EL CONTENIDO ARRIBA */
-.contenido,
-.sobre-mi,
-.tecnologias {
+/* =========================================
+   2. SECCIÓN HERO (PORTADA)
+   ========================================= */
+.contenido {
     position: relative;
     z-index: 2;
-    width: 100%;
     text-align: center;
-}
-
-/* ==============================
-   4. PORTADA (HERO)
-============================== */
-.contenido {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    padding: 20px;
 }
 
 .contenido h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    color: #00ff88;
-    text-shadow: 0 0 10px black;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    color: #00ff00;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .contenido p {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    text-shadow: 0 0 8px black;
+    font-size: clamp(1rem, 3vw, 2rem);
+    color: #bfffe0;
 }
 
-/* ==============================
-   5. SECCIONES
-============================== */
-section {
-    padding: 80px 20px;
+/* =========================================
+   3. SECCIÓN SOBRE MÍ (DESKTOP)
+   ========================================= */
+.sobre-mi {
+    position: relative;
+    z-index: 2;
+    padding: 100px 20px;
+    text-align: center;
 }
 
-/* TITULOS */
-.sobre-mi h2,
-.tecnologias h2 {
-    font-size: 3rem;
+.sobre-mi h2, .tecnologias h2 {
+    font-size: 2.5rem;
     color: #00ff88;
-    text-transform: uppercase;
 }
 
-/* LINEA */
 .linea {
     width: 80px;
     height: 4px;
     background: #00ff88;
-    margin: 15px auto 40px;
+    margin: 10px auto 50px;
+    border-radius: 5px;
 }
 
-/* ==============================
-   6. CARD (IMAGEN + TEXTO)
-============================== */
 .card {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 50px;
-
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto;
     padding: 50px;
-
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     border-radius: 20px;
-    border: 2px solid #00ff88;
-
-    box-shadow: 0 0 25px rgba(0,255,136,0.2);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
 }
 
-/* IMAGEN */
+.img-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
 .img-box img {
-    width: 260px;
-    height: 320px;
-    object-fit: cover;
-
+    width: 100%;
+    max-width: 450px; 
     border-radius: 15px;
-    border: 2px solid #00ff88;
-
-    box-shadow: 
-        0 0 20px rgba(0,255,136,0.5),
-        0 0 40px rgba(0,255,136,0.2);
+    object-fit: cover;
 }
 
-/* TEXTO */
 .texto-box {
-    max-width: 500px;
-    text-align: left;
+    flex: 1;
 }
 
 .texto-box p {
-    font-size: 1.2rem;
-    line-height: 1.7;
+    text-align: left;
+    color: #e0e0e0;
+    font-size: 1.1rem;
 }
 
-/* ==============================
-   7. TECNOLOGIAS
-============================== */
+/* =========================================
+   4. TECNOLOGÍAS (INTERACTIVO)
+   ========================================= */
+.tecnologias {
+    position: relative;
+    z-index: 2;
+    padding: 80px 20px;
+    text-align: center;
+}
+
 .tech-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .tech-card {
-    width: 140px;
-    padding: 20px;
-
-    border: 1px solid #00ff88;
-    border-radius: 10px;
-
-    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
 }
 
 .tech-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #00ff88;
+    background: rgba(0, 255, 136, 0.15);
+    transform: translateY(-10px);
+    border-color: #00ff88;
+    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
 }
 
 .tech-card i {
-    font-size: 30px;
+    font-size: 45px;
     color: #00ff88;
 }
 
-.tech-card span {
-    display: block;
-    margin-top: 10px;
-}
-
-/* ==============================
-   8. RESPONSIVE (CELULAR)
-============================== */
+/* =========================================
+   5. AJUSTES PARA CELULAR (MÓVIL)
+   ========================================= */
 @media (max-width: 768px) {
-
     .card {
-        flex-direction: column; /* 🔥 imagen arriba */
-        text-align: center;
-        padding: 30px;
+        flex-direction: column;
+        padding: 20px;
+        width: 95%;
+        gap: 25px;
+    }
+
+    .img-box {
+        width: 100%;
     }
 
     .img-box img {
-        width: 200px;
-        height: 250px;
+        width: 100%;
+        max-width: none;
+        height: auto;
     }
 
-    .texto-box {
+    .texto-box p {
         text-align: center;
+        font-size: 1rem;
     }
 
-    .sobre-mi h2,
-    .tecnologias h2 {
-        font-size: 2rem;
+    .tech-card {
+        width: calc(50% - 15px);
+        min-width: 130px;
     }
 }
