@@ -9,8 +9,7 @@
 
 body {
     overflow-x: hidden;
-    /* Fuente normal, elegante y clásica (Serif) */
-    font-family: 'Times New Roman', Times, serif; 
+   
     background-color: black;
     color: #ffffff;
     line-height: 1.6;
@@ -96,7 +95,7 @@ canvas {
 
 .card {
     display: flex;
-    flex-direction: column; /* Cambiado a columna para centrar imagen y texto */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     max-width: 900px;
@@ -169,8 +168,7 @@ canvas {
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: bold;
-    /* Aplicando fuente normal a los nombres de tech */
-    font-family: 'Times New Roman', Times, serif;
+ 
 }
 
 /* ==============================
