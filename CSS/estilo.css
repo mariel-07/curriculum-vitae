@@ -1,199 +1,463 @@
-/* =========================================
-   1. CONFIGURACIÓN BASE (RESET)
-   ========================================= */
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN BASE (Estilo Ejecutivo / Corporativo)
+   ========================================================================== */
+:root {
+    --color-fondo: #f8fafc;        /* Gris ultra-claro, limpio y moderno */
+    --color-tarjeta: #ffffff;      /* Blanco puro para destacar el contenido */
+    --color-borde: #e2e8f0;        /* Borde sutil y elegante */
+    --color-primario: #1e3a8a;     /* Azul Marino Ejecutivo (Transmite confianza y seriedad) */
+    --color-secundario: #0284c7;   /* Azul Corporativo Brillante para acentos */
+    --color-texto-principal: #0f172a; /* Gris casi negro para máxima legibilidad */
+    --color-texto-mutado: #475569;    /* Gris medio para descripciones */
+    --fuente-principal: 'Poppins', sans-serif;
+    --sombra-suave: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --sombra-tarjeta: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    --transicion: all 0.25s ease-in-out;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Forzamos una fuente genérica del sistema */
-    font-family: sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-principal);
+    line-height: 1.6;
     overflow-x: hidden;
-    background-color: black;
-    color: white;
 }
 
-/* 🎬 FONDO MATRIX (Fijo) */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
+/* Eliminamos los efectos Matrix visualmente */
+#matrix {
+    display: none; 
 }
 
-/* 🔥 CAPA OSCURA */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: -1;
 }
 
-/* =========================================
-   2. SECCIÓN HERO (PORTADA)
-   ========================================= */
-.contenido {
-    position: relative;
-    z-index: 2;
+/* ==========================================================================
+   2. COMPONENTES REUTILIZABLES (Estructura Limpia)
+   ========================================================================== */
+section {
+    padding: 100px 10% 80px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
     text-align: center;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-}
-
-.contenido h1 {
-    font-size: clamp(2.5rem, 8vw, 6rem);
-    color: #00ff00;
-    text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.contenido p {
-    font-size: clamp(1rem, 3vw, 2rem);
-    color: #bfffe0;
-}
-
-/* =========================================
-   3. SECCIÓN SOBRE MÍ (DESKTOP)
-   ========================================= */
-.sobre-mi {
-    position: relative;
-    z-index: 2;
-    padding: 100px 20px;
-    text-align: center;
-}
-
-.sobre-mi h2, .tecnologias h2 {
-    font-size: 2.5rem;
-    color: #00ff88;
+    letter-spacing: 0.5px;
+    color: var(--color-primario);
 }
 
 .linea {
-    width: 80px;
-    height: 4px;
-    background: #00ff88;
-    margin: 10px auto 50px;
-    border-radius: 5px;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-secundario);
+    margin: 12px auto 45px auto;
+    border-radius: 2px;
 }
 
-.card {
+/* Botones Corporativos */
+.btn-principal, .btn-secundario {
+    display: inline-block;
+    padding: 12px 26px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.btn-principal {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+}
+
+.btn-principal:hover {
+    background-color: #172554;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+    margin-top: 15px;
+}
+
+.btn-secundario:hover {
+    background-color: rgba(30, 58, 138, 0.04);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN (Elegante y Fija)
+   ========================================================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 10%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-borde);
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.navbar .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    letter-spacing: 0.5px;
+}
+
+.navbar .logo span {
+    color: var(--color-secundario);
+}
+
+.navbar nav a {
+    color: var(--color-texto-mutado);
+    text-decoration: none;
+    margin-left: 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transicion);
+}
+
+.navbar nav a:hover {
+    color: var(--color-primario);
+}
+
+/* ==========================================================================
+   4. SECCIÓN INICIO (Estilo Portada Profesional)
+   ========================================================================== */
+.hero {
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 50px;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 20px;
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
+    text-align: center;
+    background: radial-gradient(circle at top, #eff6ff 0%, var(--color-fondo) 100%);
+    padding-top: 80px;
+}
+
+.contenido-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 8px;
+}
+
+.contenido-hero .subtitulo {
+    font-size: 1.3rem;
+    color: var(--color-secundario);
+    font-weight: 400;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.social-icons {
+    margin-bottom: 35px;
+}
+
+.social-icons a {
+    color: var(--color-texto-mutado);
+    font-size: 1.4rem;
+    margin: 0 12px;
+    transition: var(--transicion);
+}
+
+.social-icons a:hover {
+    color: var(--color-primario);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. SECCIÓN SOBRE MÍ
+   ========================================================================== */
+.sobre-mi .card {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 45px;
+    display: flex;
+    gap: 45px;
+    align-items: center;
+    box-shadow: var(--sombra-suave);
 }
 
 .img-box {
     flex: 1;
-    display: flex;
-    justify-content: center;
+    max-width: 240px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%; /* Foto en círculo, mucho más formal corporativo */
+    overflow: hidden;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .img-box img {
     width: 100%;
-    max-width: 450px; 
-    border-radius: 15px;
+    height: 100%;
     object-fit: cover;
 }
 
 .texto-box {
-    flex: 1;
+    flex: 2;
 }
 
 .texto-box p {
-    text-align: left;
-    color: #e0e0e0;
-    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--color-texto-mutado);
+    font-size: 1rem;
+    text-align: justify;
 }
 
-/* =========================================
-   4. TECNOLOGÍAS (INTERACTIVO)
-   ========================================= */
+.texto-box strong {
+    color: var(--color-texto-principal);
+}
+
+/* ==========================================================================
+   6. SECCIÓN TECNOLOGÍAS (Limpio y Uniforme)
+   ========================================================================== */
+/* ==========================================================================
+   6. SECCIÓN TECNOLOGÍAS (Estilo Premium 3D)
+   ========================================================================== */
 .tecnologias {
-    position: relative;
-    z-index: 2;
-    padding: 80px 20px;
-    text-align: center;
+    perspective: 1000px; /* Habilita el espacio 3D para las tarjetas */
 }
 
 .tech-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-    max-width: 1200px
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px; /* Un poco más de espacio entre tarjetas */
+    padding: 10px 0;
 }
 
 .tech-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    border-radius: 15px;
-    padding: 25px;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    transition: all 0.3s ease-out;
-    cursor: pointer;
-}
-
-.tech-card:hover {
-    background: rgba(0, 255, 136, 0.15);
-    transform: translateY(-10px);
-    border-color: #00ff88;
-    box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    padding: 35px 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    
+    /* Propiedades clave para el efecto 3D con JS */
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: default;
 }
 
 .tech-card i {
-    font-size: 45px;
-    color: #00ff88;
+    font-size: 2.6rem; /* Iconos ligeramente más imponentes */
+    margin-bottom: 15px;
+    color: var(--color-primario); 
+    transition: transform 0.3s ease, color 0.3s ease;
+    
+    /* Hace que el icono "salte" visualmente hacia el usuario en el eje Z */
+    transform: translateZ(30px); 
 }
 
-/* =========================================
-   5. AJUSTES PARA CELULAR (MÓVIL)
-   ========================================= */
-@media (max-width: 768px) {
-    .card {
+.tech-card span {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-texto-principal);
+    letter-spacing: 0.5px;
+    
+    /* El texto también tiene profundidad */
+    transform: translateZ(20px);
+}
+
+/* Efectos cuando el mouse está encima (Interactuando con el JS) */
+.tech-card:hover {
+    border-color: rgba(2, 132, 199, 0.4); /* Brillo azul corporativo sutil */
+    box-shadow: 0 20px 35px -10px rgba(2, 132, 199, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+}
+
+.tech-card:hover i {
+    color: var(--color-secundario);
+}
+/* ==========================================================================
+   7. SECCIÓN PROYECTOS (Layout de Portafolio Ejecutivo)
+   ========================================================================== */
+.proyectos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.proyecto-card {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--sombra-tarjeta);
+    border-color: var(--color-borde);
+}
+
+.proyecto-info h3 {
+    font-size: 1.25rem;
+    color: var(--color-primario);
+    margin-bottom: 12px;
+}
+
+.proyecto-info p {
+    color: var(--color-texto-mutado);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+.proyecto-tags {
+    margin-bottom: 20px;
+}
+
+.proyecto-tags span {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--color-texto-mutado);
+    margin-right: 6px;
+    font-weight: 500;
+}
+
+.proyecto-links a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transicion);
+}
+
+.proyecto-links a:hover {
+    color: var(--color-primario);
+}
+
+/* ==========================================================================
+   8. SECCIÓN CONTACTO Y FOOTER
+   ========================================================================== */
+.contacto-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    padding: 45px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+}
+
+.contacto-info h3 {
+    font-size: 1.4rem;
+    color: var(--color-primario);
+    margin-bottom: 12px;
+}
+
+.contacto-info p {
+    color: var(--color-texto-mutado);
+    margin-bottom: 18px;
+}
+
+.contacto-info i {
+    color: var(--color-secundario);
+    margin-right: 8px;
+}
+
+.contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacto-form input, .contacto-form textarea {
+    background-color: #f8fafc;
+    border: 1px solid var(--color-borde);
+    padding: 12px;
+    border-radius: 6px;
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-principal);
+    font-size: 0.95rem;
+    transition: var(--transicion);
+}
+
+.contacto-form input:focus, .contacto-form textarea:focus {
+    outline: none;
+    border-color: var(--color-secundario);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid var(--color-borde);
+    color: var(--color-texto-mutado);
+    font-size: 0.9rem;
+    background-color: #ffffff;
+}
+
+/* ==========================================================================
+   9. RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 968px) {
+    .sobre-mi .card {
         flex-direction: column;
-        padding: 20px;
-        width: 95%;
-        gap: 25px;
-    }
-
-    .img-box {
-        width: 100%;
-    }
-
-    .img-box img {
-        width: 100%;
-        max-width: none;
-        height: auto;
-    }
-
-    .texto-box p {
         text-align: center;
-        font-size: 1rem;
+        padding: 30px;
     }
+    .contacto-wrapper {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 30px;
+    }
+}
 
-    .tech-card {
-        width: calc(50% - 15px);
-        min-width: 130px;
+@media (max-width: 768px) {
+    section {
+        padding: 70px 5% 50px 5%;
+    }
+    .navbar nav {
+        display: none; 
+    }
+    .contenido-hero h1 {
+        font-size: 2.4rem;
     }
 }
